@@ -1,0 +1,43 @@
+Q1.
+
+import java.util.*;
+public class Commandline {
+    public static void main(String args[])
+    {
+        ArrayList<String> list=new ArrayList<>();
+        for(String s:args)
+        list.add(s);
+
+        Iterator i=list.iterator();
+        while(i.hasNext())
+        System.out.println(i.next());
+
+    }
+    
+}
+
+___________________________________________________________________
+Q2.
+<html>
+<body>
+<%
+String name=request.getParameter("name");
+GregorianCalendar g=new GregorianCalendar();
+int h=g.get(Calendar.HOUR_OF_DAY);
+
+if(h<12)
+out.println("<h1 style=color:red>good morning "+name+"</h1>");
+else if(h>=12&&h<18)
+out.println("<h1 style=color:green>good afternoon "+name+"</h1>");
+else
+out.println("<h1 style=color:blue>good evening"+name+"</h1>");
+
+out.println("todays date :"+g.get(Calendar.DATE)+"/"+g.get(Calendar.MONTH)+"/"+g.get(Calendar.YEAR));
+out.println("todays time :"+g.get(Calendar.HOUR)+"/"+g.get(Calendar.MINUTE)+"/"+g.get(Calendar.SECOND));
+
+%>
+</body>
+<html>
+
+
+

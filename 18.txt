@@ -1,0 +1,43 @@
+Q1.
+<%
+String name=request.getParameter("name");
+out.println("<h1>welcome"+name+"</h1>");
+%>
+
+_____________________________________________________________________
+Q2.
+import java.sql.*;
+public class DB {
+    private Connection con;
+    PreparedStatement pstmt;
+
+    public void getConnection(){
+        try{
+            Class.forName("org.postgresql.Driver");
+            String url="jdbc:postgresql://192.168.5.200:5432/bcaty43";
+            con=DriverManager.getConnection(url,"bcaty43","");
+        }catch(SQLException e){}
+        catch(ClassNotFoundException e){}
+    }
+    public void update(){
+        try{
+            String query="update course set no_of_students=120 where course_name=?";
+            pstmt=con.prepareStatement(query);
+            pstmt.setString(1,"BCA science");
+            int ans=pstmt.executeUpdate();
+
+            if(ans==0)
+            System.out.println("updation failed");
+            else
+            System.out.println("updated successfully");
+            pstmt.close();
+            con.close();
+        }catch(SQLException e){}
+    }
+    public static void main(String args[])
+    {
+        DB obj=new DB();
+        obj.getConnection();
+        obj.update();
+    }
+}

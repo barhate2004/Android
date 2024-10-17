@@ -1,0 +1,66 @@
+Q1.
+<%
+String name=request.getParameter("name");
+int age=Integer.parseInt(request.getParameter("age"));
+
+if(age>17)
+out.println("<h1>"+name+" is eligible for voting</h1>");
+else
+out.println("<h1>"+name+" is not eligible for voting</h1>");
+
+%>
+________________________________________________________________________
+Q2.
+
+import java.sql.*;
+import java.util.*;
+public class DB {
+    private Connection con;
+    private PreparedStatement pstmt;
+    private ResultSet rs;
+    public void getConnection()
+    {
+        try{
+            Class.forName("org.postgresql.Driver");
+            String url="jdbc:postgresql://192.168.5.200:5432/bcaty43";
+            con=DriverManager.getConnection(url,"bcaty43","");
+        }catch(ClassNotFoundException e){}
+        catch(SQLException e){}
+    }
+    public void search(String name){
+        try{
+            String query="select * from District where name=?";
+            pstmt=con.prepareStatement(query);
+            pstmt.setString(1,name);
+            rs=pstmt.executeQuery();
+            if(rs.next())
+            System.out.println("district found");
+            else
+            System.out.println("district not found");
+        }catch(SQLException e){}
+    }
+    public void delete(String name){
+        try{
+            String query2="delete from district where name=?";
+            pstmt=con.prepareStatement(query2);
+            pstmt.setString(1,name);
+            int ans=pstmt.executeUpdate();
+            if(ans==0)
+            System.out.println("deletion failed");
+            else
+            System.out.println("deletion successful");
+            pstmt.close();
+            con.close();
+        }catch(SQLException e){}
+    }
+    public static void main(String args[])
+    {
+        DB obj=new DB();
+        Scanner sc=new Scanner(System.in);
+        obj.getConnection();
+        System.out.println("enter district to search");
+        obj.search(sc.next());
+        System.out.println("enter district to delete");
+        obj.delete(sc.next());
+    }
+}

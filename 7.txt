@@ -1,0 +1,49 @@
+Q1.
+
+
+public class Covid extends Thread {
+    private int n;
+    private String s;
+    public Covid(String s,int n)
+    {
+        this.n=n;
+        this.s=s;
+
+    }
+    public static void main(String args[])
+    {
+        Covid t1=new Covid("COVID19",10);
+        Covid t2=new Covid("LOCKDOWN2020",20);
+        Covid t3=new Covid("VACCINE2021",30);
+        t1.start();
+        t2.start();
+        t3.start();
+    }
+
+    public void run()
+    {
+        for(int i=0;i<n;i++)
+        System.out.println(s);
+    }
+    
+}
+___________________________________________________________________
+Q2.
+<%
+int n1=Integer.parseInt(request.getParameter("txt1"));
+int n2=Integer.parseInt(request.getParameter("txt1"));
+int op=Integer.parseInt(request.getParameter("r"));
+
+switch(op)
+{
+    case 1:out.println(n1+n2);
+            break;
+    case 2:out.println(n1-n2);
+            break;
+    case 3:out.println(n1*n2);
+            break;
+    case 4:out.println(n1/n2);
+            break;
+}
+%>
+
