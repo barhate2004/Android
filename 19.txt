@@ -1,0 +1,107 @@
+Q1.
+
+import java.util.*;
+public class Vowel extends Thread {
+    private static String str;
+    public static void main(String args[])
+    {
+        Vowel t=new Vowel();
+        Scanner sc=new Scanner(System.in);
+        System.out.println("enter string");
+        str=sc.next();
+        t.start();
+    }
+
+    public void run()
+    {
+        try{
+            for(int i=0;i<str.length();i++)
+            {
+               // char ch=str.charAt(i);
+                if(str.charAt(i)=='A'||str.charAt(i)=='E'||str.charAt(i)=='I'||str.charAt(i)=='O'||str.charAt(i)=='U'||
+                        str.charAt(i)=='a'||str.charAt(i)=='e'||str.charAt(i)=='i'||str.charAt(i)=='o'||str.charAt(i)=='u')
+                    System.out.println(str.charAt(i));
+                Thread.sleep(2000);
+            }
+        }
+        catch(InterruptedException e){}
+    }
+}
+_______________________________________________________________________________________________________________
+Q2.
+
+import java.net.*;
+import java.io.*;
+import java.util.*;
+public class ClientTest {
+    private Socket con;
+    private DataOutputStream sendmsg;
+    public ClientTest()
+    {  try{
+            con=new Socket(InetAddress.getLocalHost(),5000);
+            sendmsg=new DataOutputStream(con.getOutputStream());
+        }
+        catch(IOException e){}
+    }
+    public void talk()
+    {  
+        try{
+        Scanner sc=new Scanner(System.in);
+         System.out.println("enter file name:");
+                String msg=sc.nextLine();
+                sendmsg.writeUTF(msg);
+        }
+        catch(IOException e){}
+    }
+    public static void main(String args[])
+    {
+        ClientTest t=new ClientTest();
+        t.talk();
+    }   
+}
+
+
+ServerTest.java
+
+import java.net.*;
+import java.util.Scanner;
+import java.io.*;
+public class ServerTest {
+    private Socket con;
+    private ServerSocket server;
+    private DataInputStream receivedmsg;
+    public ServerTest()
+    {
+        try{
+            server=new ServerSocket(5000,1,InetAddress.getLocalHost());
+        }catch(IOException e){}
+    }
+    public void talk()
+    {
+        try{
+            con=server.accept();
+            receivedmsg=new DataInputStream(con.getInputStream());
+            String msg=receivedmsg.readUTF();
+           File file=new File(msg);
+           if(file.exists())
+           {
+            Scanner sc=new Scanner(file);
+            while(sc.hasNextLine())
+                System.out.println(sc.nextLine());
+           }
+           else
+           System.out.println("file not found");
+            con.close();
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());    
+        }
+        
+    }
+    public static void main(String[] args) {
+        ServerTest t=new ServerTest();
+        t.talk();
+    }
+    
+}
+
+

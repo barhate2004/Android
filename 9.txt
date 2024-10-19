@@ -1,0 +1,61 @@
+Q1.
+<%
+int n=Integer.parseInt(request.getParameter("num"));
+int sum=0;
+for(int i=1;i<=n/2;i++)
+{
+    if(n%i==0)
+    sum=sum+i;
+}
+if(sum==n)
+out.println("number is perfect");
+else
+out.println("number is not perfect");
+%>
+_______________________________________________________
+Q2.
+
+import java.sql.*;
+import java.util.*;
+public class DB {
+    private Connection con;
+    private PreparedStatement pstmt;
+    
+    public void getConnection()
+    {
+        try{
+            Class.forName("org.postgresql.Driver");
+        String url="jdbc:postgresql://192.168.5.200:5432/bcaty43";
+        con=DriverManager.getConnection(url,"bcaty43","");
+        }
+        catch(ClassNotFoundException e){}
+        catch(SQLException e){}
+    }
+    public void insert(int id,String name,Float salary)
+    {
+        try{
+            String query="insert into employee values(?,?,?)";
+            pstmt=con.prepareStatement(query);
+            pstmt.setInt(1,id);
+            pstmt.setString(2,name);
+            pstmt.setFloat(3,salary);
+
+            int ans=pstmt.executeUpdate();
+            if(ans==0)
+            System.out.println("insertion failed");
+            else
+            System.out.println("successful");
+            pstmt.close();
+            con.close();
+        }
+        catch(SQLException e){}
+    }
+    public static void main(String args[])
+    {
+        DB obj=new DB();
+        obj.getConnection();
+        Scanner sc=new Scanner(System.in);
+        System.out.println("enter id,name and salary :");
+        obj.insert(sc.nextInt(),sc.next(),sc.nextFloat());
+    }
+}

@@ -1,0 +1,87 @@
+Q1.
+
+import java.util.*;
+public class Set {
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("how many integers to enter :");
+        int n=sc.nextInt();
+        TreeSet<Integer> set=new TreeSet<>();
+        for(int i=0;i<n;i++)
+        {
+            System.out.println("enter number");
+            set.add(sc.nextInt());
+        }
+        System.out.println(set);
+        System.out.println("enter number to check :");
+        int key=sc.nextInt();
+
+        if(set.contains(key))
+        System.out.println("present");
+        else
+        System.out.println("not present");
+
+    }
+    
+}
+___________________________________________________________________
+Q2.
+first.java
+import java.util.*;
+public class First extends Thread {
+    public static void main(String args[])
+    {
+        First f=new First();
+        f.start();
+    }
+    public void run()
+    {
+        try{
+            Random r=new Random();
+        for(int i=0;i<10;i++){
+            int n=r.nextInt(100);
+            if(n%2==0)
+            {
+                Second s=new Second(n);
+                s.start();
+            }
+            else{
+                Third t=new Third(n);
+                t.start();
+            }
+            Thread.sleep(1000);
+            }
+        }
+        catch(InterruptedException e){}
+        } 
+}
+
+second.java
+
+public class Second extends Thread {
+    private int n;
+    public Second(int n)
+    {
+        this.n=n;
+    }
+    public void run()
+    {
+        System.out.println("square of "+n+" is :"+n*n);
+    }
+    
+}
+
+third.java
+
+public class Third extends Thread {
+    private int n;
+    public Third(int n)
+    {
+        this.n=n;
+    }
+    public void run()
+    {
+        System.out.println("cube of "+n+" is :"+n*n*n);
+    }
+}

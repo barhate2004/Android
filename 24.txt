@@ -1,0 +1,52 @@
+Q1.
+import java.util.*;
+public class List {
+    public static void main(String args[])
+    {
+        LinkedList<Integer> list=new LinkedList<>();
+        Scanner sc=new Scanner(System.in);
+        System.out.println("how many integers :");
+        int n=sc.nextInt();
+        for(int i=0;i<n;i++)
+        {
+            System.out.println("enter number");
+            list.add(sc.nextInt());
+        }
+
+        System.out.println("enter element to enter at first position");
+        int key=sc.nextInt();
+        list.add(0,key);
+        System.out.println(list);
+        System.out.println("size of list is :"+list.size());
+
+    }
+    
+}
+______________________________________________________________________-
+
+Q2.
+package slip24;
+import java.net.*;
+import java.util.*;
+import java.io.*;
+public class UrlTest {
+    public static void main(String[] args)throws IOException 
+    {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("enter URL");
+        String url=sc.nextLine();
+        URL u=new URL(url);
+        URLConnection uc=u.openConnection();
+        System.out.println("get date :"+uc.getDate());
+        System.out.println("get content type :"+uc.getContentType());
+        System.out.println("get expiry :"+uc.getExpiration());
+        System.out.println("get last modified date :"+uc.getLastModified());
+
+        int len=uc.getContentLength();
+        InputStream i=uc.getInputStream();
+        byte[] buffer = new byte[len];
+        i.read(buffer);
+        System.out.println(new String(buffer));
+        i.close();
+    }
+}
