@@ -1,0 +1,8 @@
+Q1.
+n=as.integer(readline("enter values you want"))
+v=c()
+for(i in 1:n)
+v=append(v,readline("enter values"))
+
+cat("min value is :",min(v))
+cat("\n max value is : ",max(v))

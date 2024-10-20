@@ -1,0 +1,49 @@
+Q1.
+
+n=as.integer(readline("enter how many value you want"))
+
+student=c()
+marks=c()
+
+for(i in 1:n)
+student=append(student,readline("enter name :"))
+print(student)
+
+for(i in 1:n)
+marks=append(marks,readline("enter marks :"))
+print(marks)
+
+ans=data.frame(student,marks)
+print(ans)
+cat("duplicate")
+print(ans[duplicated (ans),])
+________________________________________________________
+Q2
+import pandas as pd
+from sklearn.naive_bayes import CategoricalNB
+#from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder
+
+data=pd.read_csv('forecast.csv')
+le=LabelEncoder();
+
+print(data)
+data['weather']=le.fit_transform(data['weather'])
+data['temp']=le.fit_transform(data['temp'])
+
+x=data[['weather','temp']]
+y=data['play']
+
+print(x)
+print(y)
+
+model=CategoricalNB()
+model.fit(x,y)
+
+prediction=model.predict([[0,2],[2,1]])
+print(prediction)
+if(prediction[0]=='yes'):
+	print("play the sports")
+else:
+	print("doesn't play the sports")	
+
