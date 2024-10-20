@@ -1,0 +1,44 @@
+Q1.
+vector1=seq(10,40,length.out=4)
+vector2=seq(30,60,length.out=4)
+print("two vectors are:")
+print(vector1)
+print(vector2)
+
+cat("sum is:",vector1+vector2,"\n")
+cat("multipllication is:",vector1*vector2,"\n")
+cat("division is",vector1/vector2,"\n")
+
+
+
+
+
+------------------------------------------
+
+Q2.
+import pandas as pd
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.preprocessing import LabelEncoder
+
+data=pd.read_csv('shows.csv')
+le=LabelEncoder()
+
+data['Nationality']=le.fit_transform(data['Nationality'])
+data['Go']=le.fit_transform(data['Go'])
+
+x=data[['Age','Experience','Rank','Nationality']]
+y=data['Go']
+
+
+classifier=DecisionTreeClassifier()
+classifier.fit(x,y)
+
+prediction=classifier.predict([[40,10,7,2]])
+print(prediction)
+if(prediction[0]==1):
+	print("SUCCESSFUL")
+else:
+	print("UNSUCCESSFUL")
+
+
+

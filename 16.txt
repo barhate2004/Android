@@ -1,0 +1,41 @@
+Q1.
+data=women
+cat("datset is :")
+print(data)
+
+result=data[data $weight>120,]
+cat("\n")
+print(result)
+
+
+sorted=data[order(data$weight),]
+cat("\n")
+print(sorted)
+
+
+
+
+
+----------------------------
+Q2.
+import pandas as pd
+
+data=pd.read_csv("StudentsPerformance.csv")
+
+print("shape of dataset is:")
+shape=data.shape
+print(shape)
+
+print("top 5 rows of datase :")
+print(data.head())
+
+print("random rows from dataset")
+print(data.sample(5))
+
+print("number of columns are ")
+print(len(data.columns))
+
+print("column names ")
+print(list(data.columns))
+
+

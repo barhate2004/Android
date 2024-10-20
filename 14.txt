@@ -1,0 +1,40 @@
+Q1.
+n=as.integer(readline("how many emp:"))
+l=list()
+for(i in 1:n)
+
+l=append(l,readline("enter emp name:"))
+for(i in l)
+print(i)
+
+name=readline("add emp name:")
+l=append(l,name)
+
+l[3]=NULL
+print("add element and remove 3rd element")
+for(i in l)
+print(i)
+
+
+------------------------------------------------------------
+Q2.
+import pandas as pd
+from mlxtend.frequent_patterns import apriori,association_rules
+from mlxtend.preprocessing import TransactionEncoder
+
+df=pd.read_csv("Groceries_dataset.csv")
+
+transactions=df.groupby(('member__number')['itemDescription'].apply(lambda x:x.tolist()).tolist())
+te=TransactionEncoder()
+te_ary=te.fit(transactions).transform(transactions)
+
+df_trans=pd.DataFrame(te_ary,columns=te.columns)
+
+frequent_itemset=apriori(df_trans,min_support=0.01,use_colnames=true)
+print("frequent itemsets are :")
+print(frequent_itemset)
+
+rules=association_rules(frequent_itemset,metric="confidence",min_threshold=0.5)
+simplified_rules=rules[['antecedent','consequent','support','confidence','lift']]
+print("association rules are :")
+print(simplified_rules)

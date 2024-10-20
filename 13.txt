@@ -1,0 +1,48 @@
+Q1.
+n1=as.integer(readline("ener how many elements you want !st vector:"))
+v1=c()
+for(i in 1:n1)
+v1=append(v1,readline("enter value:"))
+print(v1)
+
+
+n2=as.integer(readline("enter how many elements you want to @nd vector"))
+v2=c()
+for(i in 1:n2)
+v2=append(v2,readline("enter value:"))
+print(v2)
+
+
+f1=as.factor(v1)
+f2=as.factor(v2)
+
+
+
+combine=unlist(list(f1,f2))
+print(combine)
+
+
+
+-------------------------------------------------------
+Q2.
+import pandas as pd
+
+data=pd.read_csv("StudentsPerformance.csv")
+
+print("shape of dataset is:")
+shape=data.shape
+print(shape)
+
+print("top 5 rows of datase :")
+print(data.head())
+
+print("random rows from dataset")
+print(data.sample(5))
+
+print("number of columns are ")
+print(len(data.columns))
+
+print("column names ")
+print(list(data.columns))
+
+
