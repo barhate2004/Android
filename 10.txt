@@ -1,0 +1,31 @@
+Q1.
+n=as.integer(readline("enter values you want"))
+v=c()
+for(i in 1:n)
+v=append(v,readline("enter values"))
+
+cat("min value is :",min(v))
+cat("\n max value is : ",max(v))
+
+__________________________________________________
+Q2.
+import pandas as pd
+from mlxtend.frequent_patterns import apriori,association_rules
+data=pd.read_csv("Iris.csv")
+
+
+data['sepal_length_bin']=pd.cut(data['sepal_length'],bins=3,labels=["short","medium","long"])
+data['sepal_width_bin']=pd.cut(data['sepal_width'],bins=3,labels=["narrow","medium","wide"])
+data['petal_length_bin']=pd.cut(data['petal_length'],bins=3,labels=["short","medium","long"])
+data['petal_width_bin']=pd.cut(data['petal_width'],bins=3,labels=["narrow","medium","wide"])
+
+encoded_data=pd.get_dummies(data[['sepal_length_bin','sepal_width_bin','petal_length_bin','petal_width_bin']])
+
+frequent_itemset=apriori(encoded_data,min_support=0.2,use_colnames=TRUE)
+print("frequent itemsets are :")
+print(frequent_itemset)
+
+rules=association_rules(frequent_itemset,metric="confidence",min_threshold=0.7)
+simplified_rules=rules[['antecedent','consequent','support','confidence']]
+print("association rules are :")
+print(simplified_rules)

@@ -1,0 +1,49 @@
+Q1.
+n1=as.integer(readline("number of values in first vector"))
+v1=c()
+for(i in 1:n1)
+v1=append(v1,readline("enter value"))
+
+n2=as.integer(readline("number of values in second vector"))
+v2=c()
+for(i in 1:n2)
+v2=append(v2,readline("enter value"))
+
+
+
+f1=as.factor(v1)
+f2=as.factor(v2)
+
+print(levels(f1))
+print(levels(f2))
+
+combine=unlist(list(f1,f2))
+print(combine)
+_______________________________________________________________________________
+Q2.
+import pandas as pd
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.preprocessing import LabelEncoder
+
+data=pd.read_csv('shows.csv')
+le=LabelEncoder()
+
+data['Nationality']=le.fit_transform(data['Nationality'])
+data['Go']=le.fit_transform(data['Go'])
+
+x=data[['Age','Experience','Rank','Nationality']]
+y=data['Go']
+
+
+classifier=DecisionTreeClassifier()
+classifier.fit(x,y)
+
+prediction=classifier.predict([[40,10,7,2],[50,13,7,0]])
+print(prediction)
+if(prediction[0]==1):
+	print("SUCCESSFUL")
+else:
+	print("UNSUCCESSFUL")
+
+
+

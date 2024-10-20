@@ -1,0 +1,13 @@
+Q1.
+
+company=c()
+
+n=as.integer(readline("enter how many compines"))
+for(i in 1:n)
+company=append(company,(readline("enter company :")))
+
+ans=data.frame(company)
+print(ans)
+print("  duplicate")
+print(ans[duplicated(ans),])
+_____________________________________________

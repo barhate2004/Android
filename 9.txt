@@ -1,0 +1,48 @@
+Q1.
+n1=as.integer(readline("eneter values in vector 1 "))
+v1=c()
+for(i in 1:n1)
+v1=append(v1,readline("enter values"))
+print(v1)
+
+n2=as.integer(readline("enter values in vector 2"))
+v2=c()
+for(i in 1:n2)
+v2=append(v2,readline("enter values"))
+print(v2)
+
+f1=as.factor(v1)
+f2=as.factor(v2)
+
+combine=unlist(list(f1,f2))
+print(combine)
+
+__________________________________________________________
+Q2.
+import numpy as np
+import pandas as pd
+from sklearn import datasets
+from sklearn.model_selection import train_test_split
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score,precision_score,recall_score
+
+cancer=datasets.load_breast_cancer()
+x=cancer.data
+y=cancer.target
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.3)#,random_state=42
+
+svm_model=SVC(kernel='linear')
+svm_model.fit(x_train,y_train)
+
+y_pred=svm_model.predict(x_test)
+
+accuracy=accuracy_score(y_test,y_pred)
+print("accuracy of prediction is : ")
+print(accuracy*100)
+precision=precision_score(y_test,y_pred)
+print("precision of prediction is : ")
+print(precision*100)
+recall=recall_score(y_test,y_pred)
+print("recall of prediction is : ")
+print(recall*100)
+

@@ -1,0 +1,58 @@
+Q1.
+r=as.integer(readline("how many rows in matrix:"))
+c=as.integer(readline("how many clos in matrix:"))
+
+m1=matrix(,nrow=r,ncol=c)
+m2=matrix(,nrow=r,ncol=c)
+
+print("enter first matrix:")
+for(i in 1:r)
+for(j in 1:c)
+m1[i,j]=as.integer(readline("enter number:"))
+
+print("enter second matrix:")
+for(i in 1:r)
+for(j in 1:c)
+m2[i,j]=as.integer(readline("enter number:"))
+
+print(m1)
+print(m2)
+add=matrix(,nrow=r,ncol=c)
+
+for(i in 1:nrow(m1))
+for(j in 1:ncol(m1))
+add[i,j]=m1[i,j]+m2[i,j]
+print("resulting matrix:")
+print(add)
+
+
+
+__________________________________________________________
+Q2.
+import numpy as np
+import pandas as pd
+from sklearn import datasets
+from sklearn.model_selection import train_test_split
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score,precision_score,recall_score
+
+cancer=datasets.load_breast_cancer()
+x=cancer.data
+y=cancer.target
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.3)#,random_state=42
+
+svm_model=SVC(kernel='linear')
+svm_model.fit(x_train,y_train)
+
+y_pred=svm_model.predict(x_test)
+
+accuracy=accuracy_score(y_test,y_pred)
+print("accuracy of prediction is : ")
+print(accuracy*100)
+precision=precision_score(y_test,y_pred)
+print("precision of prediction is : ")
+print(precision*100)
+recall=recall_score(y_test,y_pred)
+print("recall of prediction is : ")
+print(recall*100)
+
