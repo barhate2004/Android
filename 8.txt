@@ -16,6 +16,7 @@ for(i in 1:18)
 ____________________________
 Q2.
 import pandas as pd
+from sklearn.preprocessing import LabelEncoder
 data=pd.read_csv('DataPreprocessing.csv')
 print("original data\n")
 print(data)
@@ -23,4 +24,7 @@ print("\nnull valu data :\n")
 print(data[data.isnull().any(axis=1)])
 new_data=data.dropna()
 print("\ndata after dropping null values\n")
+print(new_data)
+le=LabelEncoder()
+new_data["Region"]=le.fit_transform(new_data["Region"])
 print(new_data)
